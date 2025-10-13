@@ -104,9 +104,9 @@
     nav .nav-link:focus{outline:2px solid #2b9bd3;outline-offset:2px;border-radius:6px}
     /* Allow flyout submenus to overflow horizontally (needed for nested panels) */
     nav .dropdown-panel{
-      position:absolute;top:calc(100% + 8px);left:0;min-width:300px;max-height:360px;overflow:visible;padding:8px;background:#fff;
+      position:absolute;top:calc(100% + 8px);left:0;min-width:300px;max-height:min(480px, calc(100vh - 120px));overflow-y:auto;overflow-x:visible;padding:8px;background:#fff;
       border:1px solid #e6e9ee;border-radius:10px;box-shadow:0 10px 24px rgba(15,23,42,.08);
-      display:none;z-index:1200
+      display:none;z-index:1200;-webkit-overflow-scrolling:touch
     }
     nav .dropdown-panel a{
       display:block;padding:10px 12px;border-radius:6px;color:#111;text-decoration:none;white-space:normal
@@ -124,9 +124,9 @@
     }
     nav .subnav-link:focus, nav .submenu:hover > .subnav-link{background:#f6f8fb;outline:none}
     nav .submenu-panel{
-      position:absolute;top:0;left:calc(100% + 8px);min-width:260px;padding:8px;background:#fff;
+      position:absolute;top:0;left:calc(100% + 8px);min-width:260px;max-height:min(420px, calc(100vh - 120px));overflow-y:auto;padding:8px;background:#fff;
       border:1px solid #e6e9ee;border-radius:10px;box-shadow:0 10px 24px rgba(15,23,42,.08);
-      display:none;z-index:1100
+      display:none;z-index:1100;-webkit-overflow-scrolling:touch
     }
     nav .submenu:hover .submenu-panel,
     nav .submenu:focus-within .submenu-panel,
@@ -156,111 +156,7 @@
         <i class="bi bi-list" aria-hidden="true"></i>
       </button>
 
-      <nav class="primary-nav">
-        <div class="dropdown">
-          <button class="nav-link" aria-haspopup="true" aria-expanded="false">
-            Services <span class="caret" aria-hidden="true">▾</span>
-          </button>
-          <div class="dropdown-panel" role="menu" aria-label="Registration">
-            <a href="#llp" role="menuitem">Limited Liability Partnership (LLP)</a>
-            <a href="#llp" role="menuitem">Private Limited Company</a>
-            <a href="#proprietorship" role="menuitem">Proprietorship Firm Registration</a>
-            <a href="#nidhi" role="menuitem">Nidhi Company</a>
-            <a href="#opc" role="menuitem">One Person Company</a>
-            <a href="#llp" role="menuitem">Producer Company</a>
-            <a href="#llp" role="menuitem">MSME Registration</a>
-            <a href="#llp" role="menuitem">Indian Subsidiary Company</a>
-            <a href="#llp" role="menuitem">NBFC Company</a>
-            <a href="#llp" role="menuitem">Startup Registration</a>
-          </div>
-        </div>
-
-        <div class="dropdown">
-          <button class="nav-link" aria-haspopup="true" aria-expanded="false">
-            Closure <span class="caret" aria-hidden="true">▾</span>
-          </button>
-          <div class="dropdown-panel" role="menu" aria-label="Advisory Services">
-            <a href="#companies-act" role="menuitem">Close One Person Company</a>
-            <a href="#companies-act" role="menuitem">Close Private Limited Company</a>
-            <a href="#companies-act" role="menuitem">Close Public Limited Company</a>
-            <a href="#companies-act" role="menuitem">Close Limited Liability Partnership</a>
-          </div>
-        </div>
-
-        <div class="dropdown">
-          <button class="nav-link" aria-haspopup="true" aria-expanded="false">
-            Compliances <span class="caret" aria-hidden="true">▾</span>
-          </button>
-          <div class="dropdown-panel" role="menu" aria-label="Compliance Services">
-            <a href="#companies-act" role="menuitem">ROC Compliances</a>
-            <a href="#companies-act" role="menuitem">Director KYC DIR 3 KYC</a>
-            <a href="#companies-act" role="menuitem">Accounting And Book Keeping</a>
-            <a href="#companies-act" role="menuitem">Secretarial Audit</a>
-            <a href="#companies-act" role="menuitem">TDS Return</a>
-
-            <div class="submenu">
-              <button class="subnav-link" aria-haspopup="true" aria-expanded="false">
-                Employee & Labour Compliances <i class="bi bi-caret-right-fill" aria-hidden="true"></i>
-              </button>
-              <div class="submenu-panel" role="menu" aria-label="Employee & Labour Compliances">
-                <a href="#esop" role="menuitem">Employee Stock Option Plan (ESOP)</a>
-                <a href="#posh" role="menuitem">POSH Compliances Registration</a>
-              </div>
-            </div>
-
-            <div class="submenu">
-              <button class="subnav-link" aria-haspopup="true" aria-expanded="false">
-                Other Compliances <i class="bi bi-caret-right-fill" aria-hidden="true"></i>
-              </button>
-              <div class="submenu-panel" role="menu" aria-label="Other Compliances">
-                <a href="#inc20a" role="menuitem">Form-INC-20A</a>
-                <a href="#dpt3" role="menuitem">Form DPT-3</a>
-                <a href="#msme1" role="menuitem">Form MSME-1</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="dropdown">
-          <button class="nav-link" aria-haspopup="true" aria-expanded="false">
-            License<span class="caret" aria-hidden="true">▾</span>
-          </button>
-          <div class="dropdown-panel" role="menu" aria-label="Licensing and Registration with Compliance">
-            <a href="#shop-act-registration" role="menuitem">IRDAI License Registration</a>
-            <a href="#factory-license" role="menuitem">NSIC Registration</a>
-            <a href="#trade-license" role="menuitem">Food and Drug License</a>
-            <a href="#fire-noc" role="menuitem">ISO Registration</a>
-            <a href="#police-noc" role="menuitem">HRA Calculator</a>
-            <a href="#legal-metrology" role="menuitem">AD Code Registration</a>
-            <a href="#fssai" role="menuitem">Spice Board Registration</a>
-            <a href="#labor-license" role="menuitem">Import Export Code Registration</a>
-            <a href="#esi-pf-registration" role="menuitem">Hallmark Registration</a>
-            <a href="#payroll-management" role="menuitem">GST Registration</a>
-            <a href="#iec-dgft" role="menuitem">BIS Registration</a>
-            <a href="#msme-registration" role="menuitem">GEM Portal Registration</a>
-            <a href="#trusts-societies" role="menuitem">Legal Metrology</a>
-          </div>
-        </div>
-
-        <div class="dropdown">
-          <button class="nav-link" aria-haspopup="true" aria-expanded="false">
-            Trandemark<span class="caret" aria-hidden="true">▾</span>
-          </button>
-          <div class="dropdown-panel" role="menu" aria-label="Trademark">
-            <a href="#shop-act-registration" role="menuitem">Trademark Registration</a>
-            <a href="#shop-act-registration" role="menuitem">Trademark Objection</a>
-            <a href="#shop-act-registration" role="menuitem">Trademark Opposition</a>
-            <a href="#shop-act-registration" role="menuitem">Trademark Infringement</a>
-            <a href="#shop-act-registration" role="menuitem">Trademark Rectification</a>
-            <a href="#shop-act-registration" role="menuitem">Trademark Renewal</a>
-            <a href="#shop-act-registration" role="menuitem">Trademark Assignment</a>
-          </div>
-        </div>
-
-
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
+      <nav class="primary-nav" id="desktopNav"></nav>
     </div>
   </header>
 
@@ -271,86 +167,7 @@
         <i class="bi bi-x" aria-hidden="true"></i>
       </button>
     </div>
-    <nav class="mobile-list">
-      <details>
-        <summary>Services <i class="bi bi-caret-down-fill" aria-hidden="true"></i></summary>
-        <div class="panel">
-          <a href="#llp">LIMITED LIABILITY PARTNERSHIP (LLP)</a>
-          <a href="#proprietorship">Proprietorship Firm Registration</a>
-          <a href="#nidhi">Nidhi Company</a>
-          <a href="#opc">One Person Company</a>
-        </div>
-      </details>
-
-      <details>
-        <summary>Advisory Services <i class="bi bi-caret-down-fill" aria-hidden="true"></i></summary>
-        <div class="panel">
-          <a href="#companies-act">Companies Act</a>
-          <a href="#income-tax-wealth-tax">Income Tax & Wealth Tax</a>
-          <a href="#cst-vat-laws">CST / VAT Laws</a>
-          <a href="#service-tax">Service Tax</a>
-          <a href="#sebi-takeover-code">SEBI Takeover Code</a>
-          <a href="#listing-agreement-with-stock-exchanges">Listing Agreement with Stock Exchanges</a>
-          <a href="#corporate-governance">Corporate Governance</a>
-          <a href="#corporate-restructuring">Corporate Restructuring including merger / demerger</a>
-          <a href="#finance-and-finance-restructuring">Finance & Finance Restructuring</a>
-          <a href="#accounts">Accounts</a>
-          <a href="#limited-liability-partnership-service">Limited Liability Partnership</a>
-          <a href="#fema">FEMA</a>
-          <a href="#corporate-social-responsibility">Corporate Social Responsibility</a>
-        </div>
-      </details>
-
-      <details>
-        <summary>Compliance Services <i class="bi bi-caret-down-fill" aria-hidden="true"></i></summary>
-        <div class="panel">
-          <a href="#filing-e-filing">Filing / e - filing of various Forms / Returns / Petitions under Companies Act, Income Tax Act, CST / VAT Act & Service Tax Act.</a>
-          <a href="#maintenance-of-statutory-registers">Maintenance of Statutory Registers / Records</a>
-          <a href="#compliance-of-laws">Compliance of applicable laws and regulations</a>
-          <a href="#tds-tcs-compliances">TDS / TCS compliances</a>
-          <a href="#cst-vat-compliances">CST / VAT compliances</a>
-        </div>
-      </details>
-
-      <details>
-        <summary>Licensing and Registration with Compliance <i class="bi bi-caret-down-fill" aria-hidden="true"></i></summary>
-        <div class="panel">
-          <a href="#shop-act-registration">Shop Act Registration</a>
-          <a href="#factory-license">Factory License and its compliance</a>
-          <a href="#trade-license">Trade license</a>
-          <a href="#fire-noc">Fire NOC</a>
-          <a href="#police-noc">Police NOC</a>
-          <a href="#legal-metrology">Registration and License under Legal Metrology Act (Importer, Manufacturer, Packer etc.)</a>
-          <a href="#fssai">Food License (FSSAI)</a>
-          <a href="#labor-license">Labor License</a>
-          <a href="#esi-pf-registration">ESI and PF Registration</a>
-          <a href="#payroll-management">Payroll Management</a>
-          <a href="#iec-dgft">IEC from DGFT</a>
-          <a href="#msme-registration">MSME Registration</a>
-          <a href="#trusts-societies">Incorporation of Trust and Societies</a>
-        </div>
-      </details>
-
-      <details>
-        <summary>Employee & Labour Compliances <i class="bi bi-caret-down-fill" aria-hidden="true"></i></summary>
-        <div class="panel">
-          <a href="#esop">Employee Stock Option Plan (ESOP)</a>
-          <a href="#posh">POSH Compliances Registration</a>
-        </div>
-      </details>
-
-      <details>
-        <summary>Other Compliances <i class="bi bi-caret-down-fill" aria-hidden="true"></i></summary>
-        <div class="panel">
-          <a href="#inc20a">Form-INC-20A</a>
-          <a href="#dpt3">Form DPT-3</a>
-          <a href="#msme1">Form MSME-1</a>
-        </div>
-      </details>
-
-      <a class="link-item" href="#about">About <i class="bi bi-chevron-right" aria-hidden="true"></i></a>
-      <a class="link-item" href="#contact">Contact <i class="bi bi-chevron-right" aria-hidden="true"></i></a>
-    </nav>
+    <nav class="mobile-list" id="mobileList"></nav>
   </div>
 
   <main class="container">
@@ -489,6 +306,192 @@
     }
     mockSubmit(document.getElementById('leadForm'), document.getElementById('status'));
     mockSubmit(document.getElementById('contactForm'), document.getElementById('status'));
+
+    // Unified menu config and renderers (single source of truth from desktop web)
+    const menuConfig = [
+      {
+        label: 'Services',
+        items: [
+          { label: 'Limited Liability Partnership (LLP)', href: '#llp' },
+          { label: 'Private Limited Company', href: '#llp' },
+          { label: 'Proprietorship Firm Registration', href: '#proprietorship' },
+          { label: 'Nidhi Company', href: '#nidhi' },
+          { label: 'One Person Company', href: '#opc' },
+          { label: 'Producer Company', href: '#llp' },
+          { label: 'MSME Registration', href: '#llp' },
+          { label: 'Indian Subsidiary Company', href: '#llp' },
+          { label: 'NBFC Company', href: '#llp' },
+          { label: 'Startup Registration', href: '#llp' }
+        ]
+      },
+      {
+        label: 'Closure',
+        items: [
+          { label: 'Close One Person Company', href: '#companies-act' },
+          { label: 'Close Private Limited Company', href: '#companies-act' },
+          { label: 'Close Public Limited Company', href: '#companies-act' },
+          { label: 'Close Limited Liability Partnership', href: '#companies-act' }
+        ]
+      },
+      {
+        label: 'Compliances',
+        items: [
+          { label: 'ROC Compliances', href: '#companies-act' },
+          { label: 'Director KYC DIR 3 KYC', href: '#companies-act' },
+          { label: 'Accounting And Book Keeping', href: '#companies-act' },
+          { label: 'Secretarial Audit', href: '#companies-act' },
+          { label: 'TDS Return', href: '#companies-act' },
+          {
+            label: 'Employee & Labour Compliances',
+            children: [
+              { label: 'Employee Stock Option Plan (ESOP)', href: '#esop' },
+              { label: 'POSH Compliances Registration', href: '#posh' }
+            ]
+          },
+          {
+            label: 'Other Compliances',
+            children: [
+              { label: 'Form-INC-20A', href: '#inc20a' },
+              { label: 'Form DPT-3', href: '#dpt3' },
+              { label: 'Form MSME-1', href: '#msme1' }
+            ]
+          }
+        ]
+      },
+      {
+        label: 'License',
+        items: [
+          { label: 'IRDAI License Registration', href: '#shop-act-registration' },
+          { label: 'NSIC Registration', href: '#factory_license' },
+          { label: 'Food and Drug License', href: '#trade-license' },
+          { label: 'ISO Registration', href: '#fire-noc' },
+          { label: 'HRA Calculator', href: '#police-noc' },
+          { label: 'AD Code Registration', href: '#legal-metrology' },
+          { label: 'Spice Board Registration', href: '#fssai' },
+          { label: 'Import Export Code Registration', href: '#labor-license' },
+          { label: 'Hallmark Registration', href: '#esi-pf-registration' },
+          { label: 'GST Registration', href: '#payroll-management' },
+          { label: 'BIS Registration', href: '#iec-dgft' },
+          { label: 'GEM Portal Registration', href: '#msme-registration' },
+          { label: 'Legal Metrology', href: '#trusts-societies' }
+        ]
+      },
+      {
+        label: 'Trandemark',
+        items: [
+          { label: 'Trademark Registration', href: '#shop-act-registration' },
+          { label: 'Trademark Objection', href: '#shop-act-registration' },
+          { label: 'Trademark Opposition', href: '#shop-act-registration' },
+          { label: 'Trademark Infringement', href: '#shop-act-registration' },
+          { label: 'Trademark Rectification', href: '#shop-act-registration' },
+          { label: 'Trademark Renewal', href: '#shop-act-registration' },
+          { label: 'Trademark Assignment', href: '#shop-act-registration' }
+        ]
+      },
+      { label: 'About', href: '#about' },
+      { label: 'Contact', href: '#contact' }
+    ];
+
+    function el(tag, attrs = {}, children = []) {
+      const node = document.createElement(tag);
+      for (const [k, v] of Object.entries(attrs)) {
+        if (k === 'class') node.className = v;
+        else if (k === 'text') node.textContent = v;
+        else if (k.startsWith('aria-') || k === 'role') node.setAttribute(k, v);
+        else if (k === 'html') node.innerHTML = v;
+        else node.setAttribute(k, v);
+      }
+      for (const child of children) {
+        if (typeof child === 'string') node.appendChild(document.createTextNode(child));
+        else if (child) node.appendChild(child);
+      }
+      return node;
+    }
+
+    function buildDesktop(nav) {
+      nav.innerHTML = '';
+      menuConfig.forEach(item => {
+        if (item.href) {
+          nav.appendChild(el('a', { href: item.href, text: item.label }));
+          return;
+        }
+        // Dropdown
+        const dd = el('div', { class: 'dropdown' });
+        const btn = el('button', { class: 'nav-link', 'aria-haspopup': 'true', 'aria-expanded': 'false' }, [
+          item.label + ' ',
+          el('span', { class: 'caret', 'aria-hidden': 'true', text: '▾' })
+        ]);
+        const panel = el('div', { class: 'dropdown-panel', role: 'menu' });
+        (item.items || []).forEach(sub => {
+          if (sub.children && sub.children.length) {
+            const submenu = el('div', { class: 'submenu' });
+            const sbtn = el('button', { class: 'subnav-link', 'aria-haspopup': 'true', 'aria-expanded': 'false' }, [
+              sub.label,
+              el('i', { class: 'bi bi-caret-right-fill', 'aria-hidden': 'true' })
+            ]);
+            const spanel = el('div', { class: 'submenu-panel', role: 'menu' });
+            sub.children.forEach(link => {
+              spanel.appendChild(el('a', { href: link.href, text: link.label }));
+            });
+            submenu.appendChild(sbtn);
+            submenu.appendChild(spanel);
+            panel.appendChild(submenu);
+          } else {
+            panel.appendChild(el('a', { href: sub.href, text: sub.label }));
+          }
+        });
+        dd.appendChild(btn);
+        dd.appendChild(panel);
+        nav.appendChild(dd);
+      });
+    }
+
+    function buildMobile(nav) {
+      nav.innerHTML = '';
+      const simpleLinks = [];
+      menuConfig.forEach(item => {
+        if (item.href) {
+          simpleLinks.push(item);
+          return;
+        }
+        const details = el('details', {}, []);
+        const summary = el('summary', {}, [
+          item.label + ' ',
+          el('i', { class: 'bi bi-caret-down-fill', 'aria-hidden': 'true' })
+        ]);
+        const panel = el('div', { class: 'panel' });
+        (item.items || []).forEach(sub => {
+          if (sub.children && sub.children.length) {
+            // subgroup title
+            panel.appendChild(el('div', { style: 'font-weight:700;margin-top:6px' , text: sub.label }));
+            sub.children.forEach(link => {
+              panel.appendChild(el('a', { href: link.href, text: link.label }));
+            });
+          } else {
+            panel.appendChild(el('a', { href: sub.href, text: sub.label }));
+          }
+        });
+        details.appendChild(summary);
+        details.appendChild(panel);
+        nav.appendChild(details);
+      });
+      // Append simple links (About/Contact)
+      simpleLinks.forEach(l => {
+        nav.appendChild(
+          el('a', { class: 'link-item', href: l.href }, [
+            l.label + ' ',
+            el('i', { class: 'bi bi-chevron-right', 'aria-hidden': 'true' })
+          ])
+        );
+      });
+    }
+
+    (function initMenus(){
+      const desktop = document.getElementById('desktopNav');
+      if (desktop) buildDesktop(desktop);
+      const mobile = document.getElementById('mobileList');
+      if (mobile) buildMobile(mobile);
+    })();
 
     // Accessible Services dropdown
     (function(){
