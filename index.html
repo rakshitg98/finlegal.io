@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FinLegal — Local (scaffold)</title>
+  <meta name="description" content="Financial and legal services — local scaffold" />
+
+  <!-- Icons: Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Simple reset + basic styles -->
+  <style>
+    :root{--brand:#0b4d7a;--accent:#ef7b2e;--muted:#6b7280;--maxw:1100px}
+    *{box-sizing:border-box}
+    body{font-family:Inter,system-ui,Arial,sans-serif;margin:0;color:#111;background:#fff}
+    .container{max-width:none;width:100%;margin:0;padding:0 5%}
+
+    /* Header */
+    header{border-bottom:1px solid #eee;background:#fff}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding-top:18px;padding-bottom:18px}
+    .brand{display:flex;align-items:center;gap:12px}
+    /* Increased to 72px (1.5x) per request */
+    .logo{display:block;height:72px;width:auto;background:none;border-radius:0}
+    .logo img{height:72px;width:auto;display:block}
+    nav a{margin-left:18px;color:#111;text-decoration:none;font-weight:600}
+    .primary-nav{display:flex;align-items:center;gap:14px;flex-wrap:nowrap}
+    .primary-nav a,.primary-nav .nav-link{margin-left:0;font-weight:600;font-size:14px;color:#111}
+    .cta{background:var(--brand);color:#fff;padding:10px 14px;border-radius:8px;text-decoration:none}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center;padding:48px 0}
+    .hero h1{font-size:48px;line-height:1.1;margin:0 0 12px}
+    .hero p{color:var(--muted);margin:0 0 18px}
+    .card{background:#fff;border:1px solid #f0f0f0;padding:20px;border-radius:10px;box-shadow:0 6px 18px rgba(15,23,42,0.03)}
+
+    /* Services */
+    .services{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:36px 0}
+    .service{padding:22px;border-radius:10px;border:1px solid #f4f6f8;background:#fcfeff}
+    .service h3{margin:0 0 8px}
+    .service p{margin:0;color:var(--muted);font-size:14px}
+
+    /* About / content */
+    .two-col{display:grid;grid-template-columns:1fr 360px;gap:28px}
+
+    /* Contact */
+    form{display:flex;flex-direction:column;gap:10px}
+    input,textarea,select{padding:10px;border-radius:8px;border:1px solid #e6e9ee}
+    button{background:var(--accent);color:#fff;border:none;padding:10px 12px;border-radius:8px;font-weight:700}
+
+    /* WhatsApp CTA */
+    .whatsapp-btn{background:transparent;color:#25D366;width:40px;height:40px;border-radius:8px;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+    .whatsapp-btn:hover{opacity:.85}
+    .whatsapp-btn .bi{font-size:20px;line-height:1;display:block}
+    .inline-icon{color:var(--brand);margin-right:6px;display:inline-block;vertical-align:-2px;font-size:16px}
+
+    /* Mobile nav (<=900px) */
+    .hamburger{display:none;background:none;border:0;font:inherit;cursor:pointer;padding:8px;border-radius:8px}
+    .hamburger:focus{outline:2px solid #2b9bd3;outline-offset:2px}
+    .hamburger .bi{font-size:28px;color:var(--brand)}
+    .mobile-nav .hamburger .bi{font-size:28px;color:var(--brand)}
+    .mobile-nav{display:none;position:fixed;inset:0;background:#fff;z-index:1500;overflow:auto;padding:18px}
+    .mobile-nav.open{display:block}
+    .mobile-nav .mobile-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+    .mobile-nav .mobile-list{display:grid;gap:10px}
+    .mobile-nav a{color:#111;text-decoration:none;font-weight:600}
+    .mobile-nav details{border:1px solid #e6e9ee;border-radius:10px;overflow:hidden;background:#fff}
+    .mobile-nav summary{list-style:none;cursor:pointer;padding:12px 14px;font-weight:700;display:flex;justify-content:space-between;align-items:center}
+    .mobile-nav summary::-webkit-details-marker{display:none}
+    .mobile-nav .panel{padding:6px 10px 12px;display:grid;gap:6px}
+    .mobile-nav .link-item{border:1px solid #e6e9ee;border-radius:10px;background:#fff;padding:12px 14px;font-weight:700;display:flex;justify-content:space-between;align-items:center;text-decoration:none}
+    .mobile-nav .link-item i{color:var(--muted)}
+    @media(max-width:900px){
+      .primary-nav{display:none}
+      .hamburger{display:inline-flex;align-items:center;gap:6px}
+    }
+    body.no-scroll{overflow:hidden}
+
+    /* Why copy */
+    .why-copy{background:#fcfeff;border:1px solid #e6eef6;border-radius:10px;padding:14px 16px}
+    .why-copy p{margin:0 0 10px;color:#111;line-height:1.6;text-align:justify}
+    @media(max-width:520px){.why-copy{padding:12px}}
+
+    /* About intro */
+    .about-intro{background:#fff;border:1px solid #e6eef6;border-radius:10px;padding:14px 16px;box-shadow:0 6px 18px rgba(15,23,42,0.03)}
+    .about-intro p{margin:0 0 10px;color:#111;line-height:1.6}
+    .about-intro .points{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+    .about-intro .points li{display:flex;gap:8px;align-items:flex-start;color:#111}
+    .about-intro .points i{color:var(--brand);margin-top:2px}
+    @media(max-width:520px){.about-intro{padding:12px}}
+
+    /* Footer */
+    footer{border-top:1px solid #eee;padding:28px 0;margin-top:36px;color:var(--muted)}
+
+    /* Responsive */
+    @media(max-width:900px){.hero{grid-template-columns:1fr;}.two-col{grid-template-columns:1fr}.services{grid-template-columns:1fr 1fr}.hero h1{font-size:40px}}
+    @media(max-width:520px){.services{grid-template-columns:1fr}.hero h1{font-size:32px}}
+    /* Nav dropdown */
+    nav .dropdown{position:relative;display:inline-block}
+    nav .nav-link{
+      background:none;border:0;margin-left:18px;color:#111;font-weight:600;cursor:pointer;
+      font:inherit;display:inline-flex;align-items:center;gap:6px
+    }
+    nav .nav-link:focus{outline:2px solid #2b9bd3;outline-offset:2px;border-radius:6px}
+    /* Allow flyout submenus to overflow horizontally (needed for nested panels) */
+    nav .dropdown-panel{
+      position:absolute;top:calc(100% + 8px);left:0;min-width:300px;max-height:360px;overflow:visible;padding:8px;background:#fff;
+      border:1px solid #e6e9ee;border-radius:10px;box-shadow:0 10px 24px rgba(15,23,42,.08);
+      display:none;z-index:1200
+    }
+    nav .dropdown-panel a{
+      display:block;padding:10px 12px;border-radius:6px;color:#111;text-decoration:none;white-space:normal
+    }
+    nav .dropdown-panel a:hover,nav .dropdown-panel a:focus{background:#f6f8fb}
+    nav .dropdown:hover .dropdown-panel,
+    nav .dropdown:focus-within .dropdown-panel,
+    nav .dropdown.open .dropdown-panel{display:block}
+
+    /* Nested submenu inside dropdowns */
+    nav .submenu{position:relative}
+    nav .subnav-link{
+      width:100%;background:none;border:0;color:#111;font-weight:600;
+      padding:10px 12px;border-radius:6px;cursor:pointer;display:flex;align-items:center;justify-content:space-between
+    }
+    nav .subnav-link:focus, nav .submenu:hover > .subnav-link{background:#f6f8fb;outline:none}
+    nav .submenu-panel{
+      position:absolute;top:0;left:calc(100% + 8px);min-width:260px;padding:8px;background:#fff;
+      border:1px solid #e6e9ee;border-radius:10px;box-shadow:0 10px 24px rgba(15,23,42,.08);
+      display:none;z-index:1100
+    }
+    nav .submenu:hover .submenu-panel,
+    nav .submenu:focus-within .submenu-panel,
+    nav .submenu.open .submenu-panel{display:block}
+    /* Map embed */
+    .gmap-embed iframe{
+      width:100%;
+      height:280px;
+      border:0;
+      border-radius:10px;
+    }
+    @media (min-width:900px){
+      .gmap-embed iframe{ height:320px }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <a href="/" class="logo" aria-label="FinLegal home">
+          <img src="assets/finlegal-logo.png" alt="FINLEGAL Global Advisors LLP" />
+        </a>
+      </div>
+
+      <button class="hamburger" aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false">
+        <i class="bi bi-list" aria-hidden="true"></i>
+      </button>
+
+      <nav class="primary-nav">
+        <div class="dropdown">
+          <button class="nav-link" aria-haspopup="true" aria-expanded="false">
+            Services <span class="caret" aria-hidden="true">▾</span>
+          </button>
+          <div class="dropdown-panel" role="menu" aria-label="Registration">
+            <a href="#llp" role="menuitem">Limited Liability Partnership (LLP)</a>
+            <a href="#llp" role="menuitem">Private Limited Company</a>
+            <a href="#proprietorship" role="menuitem">Proprietorship Firm Registration</a>
+            <a href="#nidhi" role="menuitem">Nidhi Company</a>
+            <a href="#opc" role="menuitem">One Person Company</a>
+            <a href="#llp" role="menuitem">Producer Company</a>
+            <a href="#llp" role="menuitem">MSME Registration</a>
+            <a href="#llp" role="menuitem">Indian Subsidiary Company</a>
+            <a href="#llp" role="menuitem">NBFC Company</a>
+            <a href="#llp" role="menuitem">Startup Registration</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <button class="nav-link" aria-haspopup="true" aria-expanded="false">
+            Closure <span class="caret" aria-hidden="true">▾</span>
+          </button>
+          <div class="dropdown-panel" role="menu" aria-label="Advisory Services">
+            <a href="#companies-act" role="menuitem">Close One Person Company</a>
+            <a href="#companies-act" role="menuitem">Close Private Limited Company</a>
+            <a href="#companies-act" role="menuitem">Close Public Limited Company</a>
+            <a href="#companies-act" role="menuitem">Close Limited Liability Partnership</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <button class="nav-link" aria-haspopup="true" aria-expanded="false">
+            Compliances <span class="caret" aria-hidden="true">▾</span>
+          </button>
+          <div class="dropdown-panel" role="menu" aria-label="Compliance Services">
+            <a href="#companies-act" role="menuitem">ROC Compliances</a>
+            <a href="#companies-act" role="menuitem">Director KYC DIR 3 KYC</a>
+            <a href="#companies-act" role="menuitem">Accounting And Book Keeping</a>
+            <a href="#companies-act" role="menuitem">Secretarial Audit</a>
+            <a href="#companies-act" role="menuitem">TDS Return</a>
+
+            <div class="submenu">
+              <button class="subnav-link" aria-haspopup="true" aria-expanded="false">
+                Employee & Labour Compliances <i class="bi bi-caret-right-fill" aria-hidden="true"></i>
+              </button>
+              <div class="submenu-panel" role="menu" aria-label="Employee & Labour Compliances">
+                <a href="#esop" role="menuitem">Employee Stock Option Plan (ESOP)</a>
+                <a href="#posh" role="menuitem">POSH Compliances Registration</a>
+              </div>
+            </div>
+
+            <div class="submenu">
+              <button class="subnav-link" aria-haspopup="true" aria-expanded="false">
+                Other Compliances <i class="bi bi-caret-right-fill" aria-hidden="true"></i>
+              </button>
+              <div class="submenu-panel" role="menu" aria-label="Other Compliances">
+                <a href="#inc20a" role="menuitem">Form-INC-20A</a>
+                <a href="#dpt3" role="menuitem">Form DPT-3</a>
+                <a href="#msme1" role="menuitem">Form MSME-1</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <button class="nav-link" aria-haspopup="true" aria-expanded="false">
+            License<span class="caret" aria-hidden="true">▾</span>
+          </button>
+          <div class="dropdown-panel" role="menu" aria-label="Licensing and Registration with Compliance">
+            <a href="#shop-act-registration" role="menuitem">IRDAI License Registration</a>
+            <a href="#factory-license" role="menuitem">NSIC Registration</a>
+            <a href="#trade-license" role="menuitem">Food and Drug License</a>
+            <a href="#fire-noc" role="menuitem">ISO Registration</a>
+            <a href="#police-noc" role="menuitem">HRA Calculator</a>
+            <a href="#legal-metrology" role="menuitem">AD Code Registration</a>
+            <a href="#fssai" role="menuitem">Spice Board Registration</a>
+            <a href="#labor-license" role="menuitem">Import Export Code Registration</a>
+            <a href="#esi-pf-registration" role="menuitem">Hallmark Registration</a>
+            <a href="#payroll-management" role="menuitem">GST Registration</a>
+            <a href="#iec-dgft" role="menuitem">BIS Registration</a>
+            <a href="#msme-registration" role="menuitem">GEM Portal Registration</a>
+            <a href="#trusts-societies" role="menuitem">Legal Metrology</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <button class="nav-link" aria-haspopup="true" aria-expanded="false">
+            Trandemark<span class="caret" aria-hidden="true">▾</span>
+          </button>
+          <div class="dropdown-panel" role="menu" aria-label="Trademark">
+            <a href="#shop-act-registration" role="menuitem">Trademark Registration</a>
+            <a href="#shop-act-registration" role="menuitem">Trademark Objection</a>
+            <a href="#shop-act-registration" role="menuitem">Trademark Opposition</a>
+            <a href="#shop-act-registration" role="menuitem">Trademark Infringement</a>
+            <a href="#shop-act-registration" role="menuitem">Trademark Rectification</a>
+            <a href="#shop-act-registration" role="menuitem">Trademark Renewal</a>
+            <a href="#shop-act-registration" role="menuitem">Trademark Assignment</a>
+          </div>
+        </div>
+
+
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <div id="mobileNav" class="mobile-nav" role="dialog" aria-modal="true" aria-label="Mobile Menu">
+    <div class="mobile-header">
+      <div style="font-weight:800">Menu</div>
+      <button id="mobileClose" class="hamburger" aria-label="Close menu">
+        <i class="bi bi-x" aria-hidden="true"></i>
+      </button>
+    </div>
+    <nav class="mobile-list">
+      <details>
+        <summary>Services <i class="bi bi-caret-down-fill" aria-hidden="true"></i></summary>
+        <div class="panel">
+          <a href="#llp">LIMITED LIABILITY PARTNERSHIP (LLP)</a>
+          <a href="#proprietorship">Proprietorship Firm Registration</a>
+          <a href="#nidhi">Nidhi Company</a>
+          <a href="#opc">One Person Company</a>
+        </div>
+      </details>
+
+      <details>
+        <summary>Advisory Services <i class="bi bi-caret-down-fill" aria-hidden="true"></i></summary>
+        <div class="panel">
+          <a href="#companies-act">Companies Act</a>
+          <a href="#income-tax-wealth-tax">Income Tax & Wealth Tax</a>
+          <a href="#cst-vat-laws">CST / VAT Laws</a>
+          <a href="#service-tax">Service Tax</a>
+          <a href="#sebi-takeover-code">SEBI Takeover Code</a>
+          <a href="#listing-agreement-with-stock-exchanges">Listing Agreement with Stock Exchanges</a>
+          <a href="#corporate-governance">Corporate Governance</a>
+          <a href="#corporate-restructuring">Corporate Restructuring including merger / demerger</a>
+          <a href="#finance-and-finance-restructuring">Finance & Finance Restructuring</a>
+          <a href="#accounts">Accounts</a>
+          <a href="#limited-liability-partnership-service">Limited Liability Partnership</a>
+          <a href="#fema">FEMA</a>
+          <a href="#corporate-social-responsibility">Corporate Social Responsibility</a>
+        </div>
+      </details>
+
+      <details>
+        <summary>Compliance Services <i class="bi bi-caret-down-fill" aria-hidden="true"></i></summary>
+        <div class="panel">
+          <a href="#filing-e-filing">Filing / e - filing of various Forms / Returns / Petitions under Companies Act, Income Tax Act, CST / VAT Act & Service Tax Act.</a>
+          <a href="#maintenance-of-statutory-registers">Maintenance of Statutory Registers / Records</a>
+          <a href="#compliance-of-laws">Compliance of applicable laws and regulations</a>
+          <a href="#tds-tcs-compliances">TDS / TCS compliances</a>
+          <a href="#cst-vat-compliances">CST / VAT compliances</a>
+        </div>
+      </details>
+
+      <details>
+        <summary>Licensing and Registration with Compliance <i class="bi bi-caret-down-fill" aria-hidden="true"></i></summary>
+        <div class="panel">
+          <a href="#shop-act-registration">Shop Act Registration</a>
+          <a href="#factory-license">Factory License and its compliance</a>
+          <a href="#trade-license">Trade license</a>
+          <a href="#fire-noc">Fire NOC</a>
+          <a href="#police-noc">Police NOC</a>
+          <a href="#legal-metrology">Registration and License under Legal Metrology Act (Importer, Manufacturer, Packer etc.)</a>
+          <a href="#fssai">Food License (FSSAI)</a>
+          <a href="#labor-license">Labor License</a>
+          <a href="#esi-pf-registration">ESI and PF Registration</a>
+          <a href="#payroll-management">Payroll Management</a>
+          <a href="#iec-dgft">IEC from DGFT</a>
+          <a href="#msme-registration">MSME Registration</a>
+          <a href="#trusts-societies">Incorporation of Trust and Societies</a>
+        </div>
+      </details>
+
+      <details>
+        <summary>Employee & Labour Compliances <i class="bi bi-caret-down-fill" aria-hidden="true"></i></summary>
+        <div class="panel">
+          <a href="#esop">Employee Stock Option Plan (ESOP)</a>
+          <a href="#posh">POSH Compliances Registration</a>
+        </div>
+      </details>
+
+      <details>
+        <summary>Other Compliances <i class="bi bi-caret-down-fill" aria-hidden="true"></i></summary>
+        <div class="panel">
+          <a href="#inc20a">Form-INC-20A</a>
+          <a href="#dpt3">Form DPT-3</a>
+          <a href="#msme1">Form MSME-1</a>
+        </div>
+      </details>
+
+      <a class="link-item" href="#about">About <i class="bi bi-chevron-right" aria-hidden="true"></i></a>
+      <a class="link-item" href="#contact">Contact <i class="bi bi-chevron-right" aria-hidden="true"></i></a>
+    </nav>
+  </div>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <h1>Your financial & legal partner for growth</h1>
+        <p>We combine deep legal expertise and financial insight to help companies structure deals, secure compliance, and scale with confidence.</p>
+
+        <div style="display:flex;gap:12px;margin-top:14px">
+          <a class="cta" href="#contact">Book a Consultation</a>
+          <a href="#about" style="padding:10px 14px;border-radius:8px;border:1px solid #e6eef6;text-decoration:none;color:var(--brand);font-weight:700">Learn More</a>
+        </div>
+      </div>
+
+      <aside class="card">
+        <h3>Get a free consultation</h3>
+        <p style="color:var(--muted);font-size:14px;margin-bottom:12px">Leave your details and we’ll get back within 24 hours.</p>
+        <form id="leadForm" action="/contact" method="post">
+          <input name="name" placeholder="Full name" required />
+          <input name="email" type="email" placeholder="Email" required />
+          <input name="phone" placeholder="Phone" />
+          <select name="service">
+            <option value="">Interested in...</option>
+            <option>Corporate Law</option>
+            <option>Tax Advisory</option>
+            <option>M&A</option>
+          </select>
+          <button type="submit">Request Call</button>
+        </form>
+      </aside>
+    </section>
+
+    <section id="services">
+      <h2>Our services</h2>
+      <div class="services">
+        <div class="service">
+          <h3>Corporate Advisory</h3>
+          <p>Company formation, contracts, governance and strategic advisory for startups and enterprises.</p>
+        </div>
+        <div class="service">
+          <h3>Tax & Compliance</h3>
+          <p>End-to-end tax planning, GST, and regulatory compliance to reduce risk and optimise taxes.</p>
+        </div>
+        <div class="service">
+          <h3>Mergers & Acquisitions</h3>
+          <p>Deal structuring, due diligence, documentation and negotiation support for M&A transactions.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="two-col">
+      <div>
+        <h2>About FinLegal</h2>
+        <div class="about-intro">
+          <p>FinLegal is a cross‑disciplinary team of chartered accountants and corporate lawyers helping ambitious businesses navigate legal complexity and scale with confidence. We blend legal rigor with financial insight to deliver practical, business‑first outcomes.</p>
+          <ul class="points">
+            <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span>Cross‑functional experts in corporate law, tax, compliance and transactions</span></li>
+            <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span>Clear, outcome‑focused advice with transparent timelines and deliverables</span></li>
+            <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span>Responsive communication, accountability and measurable results</span></li>
+          </ul>
+        </div>
+
+        <h3 style="margin-top:18px">Why clients choose us</h3>
+        <div class="why-copy">
+          <p>We are firm believer that our development and growth is straightforwardly related to the growth and development of our honored Clients. Thus, clients’ satisfaction is our utmost priority; keeping this in mind, we are always committed towards holding the highest standard of honesty, integrity and confidentiality in all our dealings.</p>
+          <p>We lay emphasis on transparency, accountability and professionalism as well. We have been successful in maintaining good work force, high integrity, client retention, sincerity, dedication and quality of service.</p>
+          <p>We boast of commitment and loyalty of our pool of experts who lend us stability and success in the past and provide us the self-assurance and enough confidence to move into future. For achieving the desired results, we strive for professional excellence by continuous training.</p>
+        </div>
+
+      </div>
+
+      <aside class="card">
+        <h3>Contact & Office</h3>
+        <p style="margin:0 0 8px;color:var(--muted)">
+          <strong>Bhupesh Mittal & Associates</strong><br/>
+          Gurgaon, India<br/>
+          <a class="whatsapp-btn" href="https://wa.me/919996815936?text=Hi%20there!%20I%20have%20a%20question%20about%20your%20products" target="_blank" rel="noopener" aria-label="Chat on WhatsApp via WhatsApp API">
+            <i class="bi bi-whatsapp" aria-hidden="true"></i>
+          </a>
+        </p>
+        <p style="margin:0 0 10px">
+          <i class="bi bi-envelope-fill inline-icon" aria-hidden="true"></i>
+          <a href="mailto:bhupesh@csbhupeshmittal.com">bhupesh@csbhupeshmittal.com</a>
+        </p>
+        <div class="gmap-embed">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3508.2514221158526!2d76.9671245757506!3d28.441836375769423!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x347a16970a14cb9%3A0x2f93d7861f531c53!2sBhupesh%20Mittal%20%26%20Associates!5e0!3m2!1sen!2sin!4v1760266714277!5m2!1sen!2sin" width="100%" height="320" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </aside>
+    </section>
+
+    <section id="contact" style="margin-top:28px">
+      <h2>Contact us</h2>
+      <div class="card" style="padding:18px">
+        <form id="contactForm">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <input name="name" placeholder="Your name" required />
+            <input name="email" type="email" placeholder="Email" required />
+          </div>
+          <textarea name="message" placeholder="How can we help?" rows="5"></textarea>
+          <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
+            <button type="submit">Send Message</button>
+            <a class="whatsapp-btn" href="https://wa.me/919996815936" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+              <i class="bi bi-whatsapp" aria-hidden="true"></i>
+            </a>
+            <div id="status" style="color:var(--muted);font-size:13px"></div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap">
+        <div>
+          <div style="font-weight:700">FinLegal</div>
+          <div style="font-size:13px;color:var(--muted)">© <span id="year"></span> All rights reserved</div>
+        </div>
+        <div style="color:var(--muted);font-size:13px">Terms • Privacy • Site map</div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // small client-side form handlers for local testing (no backend required)
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // intercept forms to simulate success
+    function mockSubmit(el, messageEl){
+      el.addEventListener('submit', function(e){
+        e.preventDefault();
+        messageEl.textContent = 'Sending...';
+        setTimeout(()=>{
+          messageEl.textContent = 'Thanks! We received your message (local mock).';
+          el.reset();
+        },800);
+      });
+    }
+    mockSubmit(document.getElementById('leadForm'), document.getElementById('status'));
+    mockSubmit(document.getElementById('contactForm'), document.getElementById('status'));
+
+    // Accessible Services dropdown
+    (function(){
+      const dropdown = document.querySelector('nav .dropdown');
+      if(!dropdown) return;
+      const btn = dropdown.querySelector('button.nav-link');
+
+      function close(){
+        btn.setAttribute('aria-expanded','false');
+        dropdown.classList.remove('open');
+      }
+      function open(){
+        btn.setAttribute('aria-expanded','true');
+        dropdown.classList.add('open');
+        // focus first item for keyboard users
+        const first = dropdown.querySelector('.dropdown-panel a');
+        setTimeout(()=> first && first.focus(), 0);
+      }
+
+      btn.addEventListener('click', ()=>{
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        expanded ? close() : open();
+      });
+
+      document.addEventListener('click', (e)=>{
+        if(!dropdown.contains(e.target)) close();
+      });
+
+      dropdown.addEventListener('keydown', (e)=>{
+        if(e.key === 'Escape'){
+          e.preventDefault();
+          close();
+          btn.focus();
+        }
+      });
+    })();
+
+    // Nested submenu toggles (desktop)
+    (function(){
+      const submenus = document.querySelectorAll('nav .submenu');
+
+      function closeAll(panel, except){
+        if(!panel) return;
+        panel.querySelectorAll('.submenu.open').forEach(el=>{
+          if(except && el === except) return;
+          const b = el.querySelector('.subnav-link');
+          if(b) b.setAttribute('aria-expanded','false');
+          el.classList.remove('open');
+        });
+      }
+
+      submenus.forEach(sm=>{
+        const btn = sm.querySelector('.subnav-link');
+        if(!btn) return;
+
+        function openSelf(){
+          const panel = sm.closest('.dropdown-panel');
+          closeAll(panel, sm); // close siblings first
+          sm.classList.add('open');
+          btn.setAttribute('aria-expanded','true');
+        }
+        function closeSelf(){
+          btn.setAttribute('aria-expanded','false');
+          sm.classList.remove('open');
+        }
+
+        // Click toggle (one-at-a-time)
+        btn.addEventListener('click', (e)=>{
+          e.preventDefault();
+          if(sm.classList.contains('open')){
+            closeSelf();
+          } else {
+            openSelf();
+          }
+        });
+
+        // Hover behavior on the entire submenu container
+        sm.addEventListener('mouseenter', openSelf);
+        sm.addEventListener('mouseleave', closeSelf);
+
+        sm.addEventListener('keydown', (e)=>{
+          if(e.key === 'Escape'){
+            e.preventDefault();
+            const panel = sm.closest('.dropdown-panel');
+            closeAll(panel, null);
+            closeSelf();
+            btn.focus();
+          }
+        });
+      });
+
+      // Close all submenus when clicking outside the dropdowns
+      document.addEventListener('click', (e)=>{
+        if(!e.target.closest('nav .dropdown-panel')){
+          document.querySelectorAll('nav .submenu.open').forEach(el=>{
+            const btn = el.querySelector('.subnav-link');
+            if(btn) btn.setAttribute('aria-expanded','false');
+            el.classList.remove('open');
+          });
+        }
+      });
+    })();
+
+    // Mobile hamburger menu
+    (function(){
+      const openBtn = document.querySelector('button.hamburger[aria-controls="mobileNav"]');
+      const mobileNav = document.getElementById('mobileNav');
+      const closeBtn = document.getElementById('mobileClose');
+      if(!openBtn || !mobileNav || !closeBtn) return;
+
+      function openMenu(){
+        mobileNav.classList.add('open');
+        document.body.classList.add('no-scroll');
+        openBtn.setAttribute('aria-expanded','true');
+      }
+      function closeMenu(){
+        mobileNav.classList.remove('open');
+        document.body.classList.remove('no-scroll');
+        openBtn.setAttribute('aria-expanded','false');
+      }
+
+      openBtn.addEventListener('click', ()=>{
+        const expanded = openBtn.getAttribute('aria-expanded') === 'true';
+        expanded ? closeMenu() : openMenu();
+      });
+      closeBtn.addEventListener('click', closeMenu);
+
+      document.addEventListener('keydown', (e)=>{
+        if(e.key === 'Escape') closeMenu();
+      });
+
+      // Close when tapping a link inside the mobile menu
+      mobileNav.addEventListener('click', (e)=>{
+        const el = e.target;
+        if(el.tagName === 'A') closeMenu();
+      });
+    })();
+  </script>
+</body>
+</html>
