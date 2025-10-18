@@ -284,12 +284,9 @@
             <input name="name" placeholder="Your name" required />
             <input name="email" type="email" placeholder="Email" required />
           </div>
-          <textarea name="message" placeholder="How can we help?" rows="5"></textarea>
+          <textarea name="message" placeholder="How can we help?" rows="5" required></textarea>
           <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
             <button type="submit">Send Message</button>
-            <a class="whatsapp-btn" href="https://wa.me/919996815936" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
-              <i class="bi bi-whatsapp" aria-hidden="true"></i>
-            </a>
             <div id="status" style="color:var(--muted);font-size:13px"></div>
           </div>
         </form>
@@ -323,7 +320,48 @@
       });
     }
     mockSubmit(document.getElementById('leadForm'), document.getElementById('status'));
-    mockSubmit(document.getElementById('contactForm'), document.getElementById('status'));
+    // Real submission for Contact form -> Vercel mailer endpoint
+    const endpoint = 'https://vercel-mailer-ejzy.vercel.app/api/contact';
+    const contactForm = document.getElementById('contactForm');
+    const statusEl = document.getElementById('status');
+    if (contactForm && statusEl) {
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const data = Object.fromEntries(new FormData(form).entries());
+        // Basic trim/required validation
+        data.name = (data.name || '').trim();
+        data.email = (data.email || '').trim();
+        data.message = (data.message || '').trim();
+        if (!data.name || !data.email || !data.message) {
+          statusEl.textContent = 'Please fill in name, email, and message.';
+          return;
+        }
+        statusEl.textContent = 'Sending…';
+        const submitBtn = form.querySelector('button[type="submit"]');
+        if (submitBtn) submitBtn.disabled = true;
+        try {
+          const res = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(data)
+          });
+          const json = await res.json().catch(() => ({}));
+          if (res.ok && (json.ok === undefined || json.ok)) {
+            form.reset();
+            statusEl.textContent = 'Thanks — your message was sent!';
+            if (submitBtn) submitBtn.disabled = false;
+          } else {
+            statusEl.textContent = json && json.error ? `Error: ${json.error}` : 'Send failed.';
+            if (submitBtn) submitBtn.disabled = false;
+          }
+        } catch (err) {
+          console.error(err);
+          statusEl.textContent = 'Network error — try again later.';
+          if (submitBtn) submitBtn.disabled = false;
+        }
+      });
+    }
 
     // Unified menu config and renderers (single source of truth from desktop web)
     const menuConfig = [
